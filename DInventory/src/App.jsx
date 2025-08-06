@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import AuthForm from './components/AuthForm';
 import Dashboard from './components/Dashboard';
+import SalesAndTools from './components/SalesAndTools'; // New component import
 import initialUsers from './users.json';
 import initialProducts from './products.json';
 import './App.css';
 
 function App() {
-  // Initialize isLoggedIn state from local storage.
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(localStorage.getItem('isLoggedIn')) || false
   );
+  const [currentPage, setCurrentPage] = useState('inventory');
 
   useEffect(() => {
-    // Populate local storage with initial user data only if it doesn't exist.
     if (!localStorage.getItem('users')) {
       localStorage.setItem('users', JSON.stringify(initialUsers));
     }
-    // Populate local storage with initial product data only if it doesn't exist.
     if (!localStorage.getItem('products')) {
       localStorage.setItem('products', JSON.stringify(initialProducts));
     }
@@ -30,12 +29,26 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('isLoggedIn');
+    setCurrentPage('inventory'); // Reset to default page on logout
+  };
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPage = () => {
+    if (currentPage === 'inventory') {
+      return <Dashboard onLogout={handleLogout} onNavigate={handleNavigate} />;
+    } else if (currentPage === 'sales') {
+      return <SalesAndTools onLogout={handleLogout} onNavigate={handleNavigate} />;
+    }
+    return null;
   };
 
   return (
     <>
       {isLoggedIn ? (
-        <Dashboard onLogout={handleLogout} />
+        renderPage()
       ) : (
         <AuthForm onLogin={handleLogin} />
       )}
