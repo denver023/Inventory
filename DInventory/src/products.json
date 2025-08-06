@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Chrome Lighter",
+    "reference": "Z-101",
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "name": "Armor High Polish Chrome Lighter",
+    "reference": "Z-102",
+    "stock": 25
+  },
+  {
+    "id": 3,
+    "name": "Venetian High Polish Brass Lighter",
+    "reference": "Z-103",
+    "stock": 75
+  },
+  {
+    "id": 4,
+    "name": "Black Matte Lighter",
+    "reference": "Z-104",
+    "stock": 120
+  },
+  {
+    "id": 5,
+    "name": "Brushed Chrome Lighter",
+    "reference": "Z-105",
+    "stock": 40
+  }
+]
